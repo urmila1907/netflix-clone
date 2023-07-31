@@ -32,8 +32,10 @@ export default function Home() {
     const getUserStats = async () => {
       try {
         const res = await axios.get("/users/stats", {
-          headers:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YzE2ZGRlODA2MmVmN2MzNjE5ZTdhNCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5MDc3NTMwMSwiZXhwIjoxNjkxMjA3MzAxfQ.zu3dAsw9ilivXclPq_3cV-iZJGJ8efnUoEwxy7O1ong",
+          headers: {
+            token:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YzE2ZGRlODA2MmVmN2MzNjE5ZTdhNCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5MDc3ODE5NSwiZXhwIjoxNjkxMjEwMTk1fQ.Mvdr9H4GMhtZ0xpoU4L7x_fAk9j7MvbrvJehKyXDawQ",
+          },
         });
         const statsList = res.data.sort(function(a,b){
            return a._id - b._id;
