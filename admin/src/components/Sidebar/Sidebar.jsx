@@ -9,12 +9,12 @@ import {
   StackedBarChartOutlined,
   LineStyle,
   TrendingUp,
-  Store,
   ReportGmailerrorred,
   Message,
   Feedback,
   Email,
   AttachMoney,
+  MovieFilter,
 } from "@mui/icons-material";
 
 export default function Sidebar() {
@@ -47,9 +47,9 @@ export default function Sidebar() {
                 Users
               </li>
             </Link>
-            <Link to="/products" className="link">
+            <Link to="/movies" className="link">
               <li className="sidebarListItem">
-                <Store className="sidebarIcon" /> Products
+                <MovieFilter className="sidebarIcon" /> Movies
               </li>
             </Link>
             <li className="sidebarListItem">
