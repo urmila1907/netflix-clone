@@ -7,7 +7,7 @@ import {
   Publish,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import "./user.css";
+import "./user.scss";
 
 export default function User() {
   return (
