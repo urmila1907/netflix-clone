@@ -1,4 +1,6 @@
-import firebase from "firebase";
+
+import { getStorage } from "firebase/storage";
+import {initializeApp} from "firebase/app"
 
 const firebaseConfig = {
   apiKey: process.env.API_KEY,
@@ -10,6 +12,9 @@ const firebaseConfig = {
   measurementId: "G-VX9WNQQQ9C",
 };
 
-firebase.initializeApp(firebaseConfig);
-const storage = firebase.storage();
+const app = initializeApp(firebaseConfig);
+
+// Initialize Cloud Storage and get a reference to the service
+const storage = getStorage(app);
+
 export default storage;
