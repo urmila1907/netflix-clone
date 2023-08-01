@@ -1,14 +1,13 @@
-import React from "react";
-import "./home.scss";
-import FeaturedInfo from "../../components/FeaturedInfo/FeaturedInfo";
 import Chart from "../../components/Chart/Chart";
-import WidgetLg from "../../components/WidgetLg/WidgetLg";
+import FeaturedInfo from "../../components/FeaturedInfo/FeaturedInfo";
+import "./home.scss";
+// import { userData } from "../../dummyData";
 import WidgetSm from "../../components/WidgetSm/WidgetSm";
-import { useEffect, useState, useMemo } from "react";
+import WidgetLg from "../../components/WidgetLg/WidgetLg";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 
 export default function Home() {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const MONTHS = useMemo(
     () => [
       "Jan",
@@ -18,7 +17,7 @@ export default function Home() {
       "May",
       "Jun",
       "Jul",
-      "Aug",
+      "Agu",
       "Sep",
       "Oct",
       "Nov",
@@ -26,40 +25,38 @@ export default function Home() {
     ],
     []
   );
+
   const [userStats, setUserStats] = useState([]);
 
   useEffect(() => {
-    const getUserStats = async () => {
+    const getStats = async () => {
       try {
         const res = await axios.get("/users/stats", {
-          headers:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YzE2ZGRlODA2MmVmN2MzNjE5ZTdhNCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5MDc3NTMwMSwiZXhwIjoxNjkxMjA3MzAxfQ.zu3dAsw9ilivXclPq_3cV-iZJGJ8efnUoEwxy7O1ong",
+          headers: {
+            token:
+              "Bearer "+JSON.stringify(localStorage.getItem("user").accessToken)
+          },
         });
-        const statsList = res.data.sort(function(a,b){
-           return a._id - b._id;
-        })
+        const statsList = res.data.sort(function (a, b) {
+          return a._id - b._id;
+        });
         statsList.map((item) =>
           setUserStats((prev) => [
             ...prev,
-            { name: MONTHS[item._id - 1], "New Users": item.total },
+            { name: MONTHS[item._id - 1], "New User": item.total },
           ])
         );
       } catch (err) {
         console.log(err);
       }
     };
-    getUserStats();
+    getStats();
   }, [MONTHS]);
 
   return (
     <div className="home">
       <FeaturedInfo />
-      <Chart
-        data={userStats}
-        title="User Analytics"
-        grid
-        dataKey="New Users"
-      />
+      <Chart data={userStats} title="User Analytics" grid dataKey="New User" />
       <div className="homeWidgets">
         <WidgetSm />
         <WidgetLg />
