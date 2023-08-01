@@ -8,7 +8,7 @@ import { deleteMovie, getMovies } from "../../context/movieContext/apiCalls";
 
 export default function MovieList() {
   const { movies, dispatch } = useContext(MovieContext);
-
+  
   useEffect(() => {
     getMovies(dispatch);
   }, [dispatch]);
@@ -16,6 +16,12 @@ export default function MovieList() {
   const handleDelete = (id) => {
     deleteMovie(id, dispatch);
   };
+
+  console.log(movies);
+
+  // const handleEdit = (id,row) => {
+  //   navigate(`/movie/${id}`,{state:{movie: row}});
+  // };
 
   const columns = [
     { field: "_id", headerName: "ID", width: 90 },
@@ -44,9 +50,13 @@ export default function MovieList() {
       renderCell: (params) => {
         return (
           <>
-            <Link
-              to={{ pathname: "/movie/" + params.row._id, movie: params.row }}
+            {/* <button
+              className="productListEdit"
+              onClick={handleEdit(params.row._id,params.row)}
             >
+              Edit
+            </button> */}
+            <Link to={{pathname:"/movies/"+params.row._id,state:{movie:params.row}}}>
               <button className="productListEdit">Edit</button>
             </Link>
             <DeleteOutline

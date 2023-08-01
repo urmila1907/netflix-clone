@@ -1,72 +1,49 @@
-import Sidebar from "./components/sidebar/Sidebar";
-import Topbar from "./components/topbar/Topbar";
-import "./app.scss";
+import "./App.scss";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import Sidebar from "./components/Sidebar/Sidebar";
+import Topbar from "./components/Topbar/Topbar";
 import Home from "./pages/home/Home";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
 import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
-import Login from "./pages/login/Login";
-import { AuthContext } from "./context/authContext/AuthContext";
-import { useContext } from "react";
-import ListList from "./pages/listList/ListList";
-import List from "./pages/list/List";
-import NewList from "./pages/newList/NewList";
+import Movie from "./pages/movie/Movie";
 import MovieList from "./pages/movieList/MovieList";
-import { Movie } from "@mui/icons-material";
+import Login from "./pages/login/Login";
+import NewList from "./pages/newList/NewList";
+import List from "./pages/list/List";
+import ListList from "./pages/listList/ListList";
+import { useContext } from "react";
+import { AuthContext } from "./context/authContext/AuthContext";
 import NewMovie from "./pages/newMovie/NewMovie";
 
 function App() {
   const { user } = useContext(AuthContext);
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        <Route path="/login">{user ? <Navigate to="/" /> : <Login />}</Route>
-        {user && (
-          <>
-            <Topbar />
-            <div className="container">
-              <Sidebar />
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/users">
-                <UserList />
-              </Route>
-              <Route path="/user/:userId">
-                <User />
-              </Route>
-              <Route path="/newUser">
-                <NewUser />
-              </Route>
-              <Route path="/movies">
-                <MovieList />
-              </Route>
-              <Route path="/movie/:movieId">
-                <Movie />
-              </Route>
-              <Route path="/newMovie">
-                <NewMovie />
-              </Route>
-              <Route path="/lists">
-                <ListList />
-              </Route>
-              <Route path="/list/:listId">
-                <List />
-              </Route>
-              <Route path="/newlist">
-                <NewList />
-              </Route>
-            </div>
-          </>
-        )}
+        <Route path="/" element={user ? <Navigate to="/" /> : <Login />} />
       </Routes>
-    </BrowserRouter>
+      {user && (
+        <>
+          <Topbar />
+          <div className="container">
+            <Sidebar />
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route path="/users" element={<UserList />} />
+              <Route path="/users/:userId" element={<User />} />
+              <Route path="/newUser" element={<NewUser />} />
+              <Route path="/movies" element={<MovieList />} />
+              <Route path="/movie/:movieId" element={<Movie />} />
+              <Route path="/newMovie" element={<NewMovie />} />
+              <Route path="/lists" element={<ListList />} />
+              <Route path="/lists/:listId" element={<List />} />
+              <Route path="/newList" element={<NewList />} />
+            </Routes>
+          </div>
+        </>
+      )}
+    </Router>
   );
 }
 

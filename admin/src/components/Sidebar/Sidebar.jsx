@@ -1,20 +1,21 @@
+import React from "react";
 import "./sidebar.scss";
-import {
-  LineStyle,
-  Timeline,
-  TrendingUp,
-  PermIdentity,
-  PlayCircleOutline,
-  List,
-  MailOutline,
-  DynamicFeed,
-  ChatBubbleOutline,
-  WorkOutline,
-  Report,
-  AddToQueue,
-  QueuePlayNext,
-} from "@mui/icons-material";
 import { Link } from "react-router-dom";
+
+import AnalyticsIcon from "@mui/icons-material/Analytics";
+import {
+  ManageAccounts,
+  Person2Outlined,
+  StackedBarChartOutlined,
+  LineStyle,
+  TrendingUp,
+  ReportGmailerrorred,
+  Message,
+  Feedback,
+  Email,
+  MovieFilter,
+  List,
+} from "@mui/icons-material";
 
 export default function Sidebar() {
   return (
@@ -30,12 +31,10 @@ export default function Sidebar() {
               </li>
             </Link>
             <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              Analytics
+              <AnalyticsIcon className="sidebarIcon" /> Analytics
             </li>
             <li className="sidebarListItem">
-              <TrendingUp className="sidebarIcon" />
-              Sales
+              <TrendingUp className="sidebarIcon" /> Sales
             </li>
           </ul>
         </div>
@@ -44,50 +43,37 @@ export default function Sidebar() {
           <ul className="sidebarList">
             <Link to="/users" className="link">
               <li className="sidebarListItem">
-                <PermIdentity className="sidebarIcon" />
+                <Person2Outlined className="sidebarIcon" />
                 Users
               </li>
             </Link>
             <Link to="/movies" className="link">
               <li className="sidebarListItem">
-                <PlayCircleOutline className="sidebarIcon" />
-                Movies
+                <MovieFilter className="sidebarIcon" /> Movies
               </li>
             </Link>
             <Link to="/lists" className="link">
               <li className="sidebarListItem">
-                <List className="sidebarIcon" />
-                Lists
+                <List className="sidebarIcon" /> Lists
               </li>
             </Link>
-            <Link to="/newMovie" className="link">
-              <li className="sidebarListItem">
-                <AddToQueue className="sidebarIcon" />
-                Add Movie
-              </li>
-            </Link>
-            <Link to="/newList" className="link">
-              <li className="sidebarListItem">
-                <QueuePlayNext className="sidebarIcon" />
-                Add List
-              </li>
-            </Link>
+            <li className="sidebarListItem">
+              <StackedBarChartOutlined className="sidebarIcon" /> Reports
+            </li>
           </ul>
         </div>
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Notifications</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem">
-              <MailOutline className="sidebarIcon" />
+              <Email className="sidebarIcon" />
               Mail
             </li>
             <li className="sidebarListItem">
-              <DynamicFeed className="sidebarIcon" />
-              Feedback
+              <Feedback className="sidebarIcon" /> Feedback
             </li>
             <li className="sidebarListItem">
-              <ChatBubbleOutline className="sidebarIcon" />
-              Messages
+              <Message className="sidebarIcon" /> Messages
             </li>
           </ul>
         </div>
@@ -95,16 +81,14 @@ export default function Sidebar() {
           <h3 className="sidebarTitle">Staff</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem">
-              <WorkOutline className="sidebarIcon" />
+              <ManageAccounts className="sidebarIcon" />
               Manage
             </li>
             <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              Analytics
+              <AnalyticsIcon className="sidebarIcon" /> Analytics
             </li>
             <li className="sidebarListItem">
-              <Report className="sidebarIcon" />
-              Reports
+              <ReportGmailerrorred className="sidebarIcon" /> Reports
             </li>
           </ul>
         </div>

@@ -14,6 +14,7 @@ mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    family: 4,
   })
   .then(() => console.log("Successfully connected"))
   .catch((err) => console.log(err));

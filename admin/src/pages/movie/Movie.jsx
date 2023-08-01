@@ -1,10 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import "./movie.scss";
-import { Publish } from "@material-ui/icons";
+import { Publish } from "@mui/icons-material";
 
 export default function Movie() {
   const location = useLocation();
-  const movie = location.movie;
+  const { movie } = location.state;
+  // console.log(location);
   return (
     <div className="product">
       <div className="productTitleContainer">
@@ -58,7 +59,7 @@ export default function Movie() {
           <div className="productFormRight">
             <div className="productUpload">
               <img src={movie.img} alt="" className="productUploadImg" />
-              <label for="file">
+              <label htmlFor="file">
                 <Publish />
               </label>
               <input type="file" id="file" style={{ display: "none" }} />

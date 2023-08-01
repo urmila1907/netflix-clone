@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import "./newMovie.scss";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import storage from "../../firebase";
 import { createMovie } from "../../context/movieContext/apiCalls";
 import { MovieContext } from "../../context/movieContext/MovieContext";
@@ -23,7 +24,8 @@ export default function NewMovie() {
   const upload = (items) => {
     items.forEach((item) => {
       const fileName = new Date().getTime() + item.label + item.file.name;
-      const uploadTask = storage.ref(`/items/${fileName}`).put(item.file);
+      const storageRef = ref(storage, `/items/${fileName}`);
+      const uploadTask = uploadBytesResumable(storageRef, item.file);
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -35,7 +37,7 @@ export default function NewMovie() {
           console.log(error);
         },
         () => {
-          uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
             setMovie((prev) => {
               return { ...prev, [item.label]: url };
             });

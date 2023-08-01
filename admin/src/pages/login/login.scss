@@ -6,23 +6,20 @@
   justify-content: center;
 
   .loginForm {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-  .loginInput {
-  margin-bottom: 10px;
-  padding: 5px;
+    .loginInput {
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+
+    .loginButton {
+      background-color: teal;
+      border: none;
+      color: white;
+      padding: 5px;
+      cursor: pointer;
+    }
+  }
 }
-
-.loginButton {
-  background-color: teal;
-  border: none;
-  color: white;
-  padding: 5px;
-  cursor: pointer;
-}
-}
-}
-
-
-
